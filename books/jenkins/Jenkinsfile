@@ -112,9 +112,16 @@ pipeline {
                     input message: "Promote to Staging?"
                 }
                 //TODO: Tag the books:latest image stream as books:stage
+                script {
+                  openshift.withCluster() {
+                    openshift.tag("${DEV_PROJECT}/books:latest", "${STAGE_PROJECT}/books:stage")
+                  }
+                }
+/*
                 sh '''
                   oc tag lukas-stanek-dev/books:latest lukas-stanek-stage/books:stage
                 '''
+*/
             }
         }
 
