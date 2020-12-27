@@ -12,8 +12,8 @@ pipeline {
 
     environment {
         //TODO: Customize these variables for your environment
-        DEV_PROJECT = "lukas-stanek-movies-dev"
-        STAGE_PROJECT = "lukas-stanek-movies-stage"
+        DEV_PROJECT = "lukas-stanek-movies2-dev"
+        STAGE_PROJECT = "lukas-stanek-movies2-stage"
         APP_GIT_URL = "https://github.com/pradels/DO288-apps"
         NEXUS_SERVER = "http://nexus-common.apps.eu45.prod.nextcle.com/repository/java"
 
@@ -95,8 +95,10 @@ pipeline {
         }
 
         stage('Wait for deployment in DEV env') {
-          sh 'sleep 30'
+          steps {
+            sh 'sleep 30'
             //TODO: Watch deployment until pod is in 'Running' state
+          }
         }
 
         stage('Promote to Staging Env') {
